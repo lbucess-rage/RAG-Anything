@@ -1,0 +1,1259 @@
+<div align="center">
+
+<div style="margin: 20px 0;">
+  <img src="./assets/logo.png" width="120" height="120" alt="RAG-Anything Logo" style="border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 217, 255, 0.3);">
+</div>
+
+# RAG-Anything: 올인원 RAG 프레임워크
+
+<a href="https://trendshift.io/repositories/14959" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14959" alt="HKUDS%2FRAG-Anything | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=24&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Welcome+to+RAG-Anything;Next-Gen+Multimodal+RAG+System;Powered+by+Advanced+AI+Technology" alt="Typing Animation" />
+</div>
+
+<div align="center">
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 25px; text-align: center;">
+    <p>
+      <a href='https://github.com/HKUDS/RAG-Anything'><img src='https://img.shields.io/badge/Project-Page-00d9ff?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://arxiv.org/abs/2510.12323'><img src='https://img.shields.io/badge/arXiv-2510.12323-ff6b6b?style=for-the-badge&logo=arxiv&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://github.com/HKUDS/LightRAG'><img src='https://img.shields.io/badge/Based%20on-LightRAG-4ecdc4?style=for-the-badge&logo=lightning&logoColor=white&labelColor=1a1a2e'></a>
+    </p>
+    <p>
+      <a href="https://github.com/HKUDS/RAG-Anything/stargazers"><img src='https://img.shields.io/github/stars/HKUDS/RAG-Anything?color=00d9ff&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e' /></a>
+      <img src="https://img.shields.io/badge/Python-3.10-4ecdc4?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e">
+      <a href="https://pypi.org/project/raganything/"><img src="https://img.shields.io/pypi/v/raganything.svg?style=for-the-badge&logo=pypi&logoColor=white&labelColor=1a1a2e&color=ff6b6b"></a>
+      <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/uv-Ready-ff6b6b?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="https://discord.gg/yF2MmDJyGJ"><img src="https://img.shields.io/badge/Discord-Community-7289da?style=for-the-badge&logo=discord&logoColor=white&labelColor=1a1a2e"></a>
+      <a href="https://github.com/HKUDS/RAG-Anything/issues/7"><img src="https://img.shields.io/badge/WeChat-Group-07c160?style=for-the-badge&logo=wechat&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="README_zh.md"><img src="https://img.shields.io/badge/中文版-1a1a2e?style=for-the-badge"></a>
+      <a href="README.md"><img src="https://img.shields.io/badge/English-1a1a2e?style=for-the-badge"></a>
+      <a href="README_ko.md"><img src="https://img.shields.io/badge/한국어-1a1a2e?style=for-the-badge"></a>
+    </p>
+  </div>
+</div>
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; height: 2px; margin: 20px 0; background: linear-gradient(90deg, transparent, #00d9ff, transparent);"></div>
+</div>
+
+<div align="center">
+  <a href="#-빠른-시작" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/빠른%20시작-지금%20시작하기-00d9ff?style=for-the-badge&logo=rocket&logoColor=white&labelColor=1a1a2e">
+  </a>
+</div>
+
+---
+
+## 뉴스
+
+- [X] [2025.10] 🚀 [RAG-Anything](http://arxiv.org/abs/2510.12323) 기술 보고서가 공개되었습니다. 최신 연구 결과를 확인해보세요.
+- [X] [2025.08] 🔍 RAG-Anything에 **VLM 강화 쿼리** 모드가 추가되었습니다! 문서에 이미지가 포함된 경우, 시스템이 자동으로 VLM과 통합하여 시각적, 텍스트적 맥락을 결합한 고급 멀티모달 분석을 수행합니다.
+- [X] [2025.07] RAG-Anything에 [컨텍스트 설정 모듈](docs/context_aware_processing.md)이 추가되어, 관련 문맥 정보를 지능적으로 통합하여 멀티모달 콘텐츠 처리를 향상시킵니다.
+- [X] [2025.07] 🚀 RAG-Anything이 멀티모달 쿼리 기능을 지원합니다. 텍스트, 이미지, 테이블, 수식을 원활하게 처리하는 향상된 RAG를 제공합니다.
+- [X] [2025.07] 🎉 RAG-Anything이 GitHub에서 1천개 🌟 스타를 달성했습니다! 여러분의 성원과 기여에 감사드립니다.
+
+---
+
+## 시스템 개요
+
+*차세대 멀티모달 인텔리전스*
+
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #00d9ff; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
+
+현대 문서에는 텍스트, 이미지, 테이블, 수식, 차트, 멀티미디어 등 다양한 멀티모달 콘텐츠가 점점 더 많이 포함되고 있으며, 기존의 텍스트 중심 RAG 시스템으로는 이를 효과적으로 처리할 수 없습니다. **RAG-Anything**은 [LightRAG](https://github.com/HKUDS/LightRAG)를 기반으로 구축된 포괄적인 **올인원 멀티모달 문서 처리 RAG 시스템**으로 이 문제를 해결합니다.
+
+통합 솔루션으로서 RAG-Anything은 **여러 개의 전문 도구가 필요 없습니다**. 단일 통합 프레임워크 내에서 **모든 콘텐츠 모달리티에 걸쳐 원활한 처리와 쿼리**를 제공합니다. 비텍스트 요소를 처리하는 데 어려움을 겪는 기존 RAG 접근 방식과 달리, 올인원 시스템은 **포괄적인 멀티모달 검색 기능**을 제공합니다.
+
+사용자는 **인터리브된 텍스트**, **시각적 다이어그램**, **구조화된 테이블**, **수학 공식**이 포함된 문서를 **하나의 통합 인터페이스**를 통해 쿼리할 수 있습니다. 이 통합 접근 방식은 풍부하고 혼합된 콘텐츠 문서가 **통합 처리 프레임워크**를 필요로 하는 학술 연구, 기술 문서, 재무 보고서, 기업 지식 관리에 특히 유용합니다.
+
+<img src="assets/rag_anything_framework.png" alt="RAG-Anything" />
+
+</div>
+
+### 주요 기능
+
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 15px; padding: 25px; margin: 20px 0;">
+
+- **🔄 엔드투엔드 멀티모달 파이프라인** - 문서 수집 및 파싱부터 지능형 멀티모달 쿼리 응답까지 완전한 워크플로우
+- **📄 범용 문서 지원** - PDF, Office 문서, 이미지 및 다양한 파일 형식의 원활한 처리
+- **🧠 전문 콘텐츠 분석** - 이미지, 테이블, 수학 수식 및 이기종 콘텐츠 유형을 위한 전용 프로세서
+- **🔗 멀티모달 지식 그래프** - 향상된 이해를 위한 자동 엔티티 추출 및 교차 모달 관계 발견
+- **⚡ 적응형 처리 모드** - 유연한 MinerU 기반 파싱 또는 직접 멀티모달 콘텐츠 삽입 워크플로우
+- **📋 직접 콘텐츠 리스트 삽입** - 외부 소스에서 미리 파싱된 콘텐츠 리스트를 직접 삽입하여 문서 파싱 우회
+- **🎯 하이브리드 지능형 검색** - 문맥 이해를 통한 텍스트 및 멀티모달 콘텐츠에 걸친 고급 검색 기능
+
+</div>
+
+---
+
+## 알고리즘 및 아키텍처
+
+<div style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #00d9ff;">
+
+### 핵심 알고리즘
+
+**RAG-Anything**은 지능형 오케스트레이션과 교차 모달 이해를 통해 다양한 콘텐츠 모달리티를 원활하게 처리하도록 기존 RAG 아키텍처를 근본적으로 확장하는 효과적인 **다단계 멀티모달 파이프라인**을 구현합니다.
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; max-width: 600px; margin: 20px auto; padding: 20px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%); border-radius: 15px; border: 1px solid rgba(0, 217, 255, 0.2);">
+    <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div style="text-align: center;">
+        <div style="font-size: 24px; margin-bottom: 10px;">📄</div>
+        <div style="font-size: 14px; color: #00d9ff;">문서 파싱</div>
+      </div>
+      <div style="font-size: 20px; color: #00d9ff;">→</div>
+      <div style="text-align: center;">
+        <div style="font-size: 24px; margin-bottom: 10px;">🧠</div>
+        <div style="font-size: 14px; color: #00d9ff;">콘텐츠 분석</div>
+      </div>
+      <div style="font-size: 20px; color: #00d9ff;">→</div>
+      <div style="text-align: center;">
+        <div style="font-size: 24px; margin-bottom: 10px;">🔍</div>
+        <div style="font-size: 14px; color: #00d9ff;">지식 그래프</div>
+      </div>
+      <div style="font-size: 20px; color: #00d9ff;">→</div>
+      <div style="text-align: center;">
+        <div style="font-size: 24px; margin-bottom: 10px;">🎯</div>
+        <div style="font-size: 14px; color: #00d9ff;">지능형 검색</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+### 1. 문서 파싱 단계
+
+<div style="background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%); border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid #4ecdc4;">
+
+시스템은 적응형 콘텐츠 분해를 통해 고충실도 문서 추출을 제공합니다. 문맥적 관계를 유지하면서 이기종 요소를 지능적으로 분할합니다. 특수 최적화 파서를 통해 범용 형식 호환성을 달성합니다.
+
+**주요 구성 요소:**
+
+- **⚙️ MinerU 통합**: 복잡한 레이아웃 전반에 걸쳐 고충실도 문서 구조 추출 및 의미 보존을 위해 [MinerU](https://github.com/opendatalab/MinerU)를 활용합니다.
+
+- **🧩 적응형 콘텐츠 분해**: 문맥적 관계를 유지하면서 문서를 일관된 텍스트 블록, 시각적 요소, 구조화된 테이블, 수학 수식 및 전문 콘텐츠 유형으로 자동 분할합니다.
+
+- **📁 범용 형식 지원**: 형식별 최적화된 전문 파서를 통해 PDF, Office 문서(DOC/DOCX/PPT/PPTX/XLS/XLSX), 이미지 및 새로운 형식에 대한 포괄적인 처리를 제공합니다.
+
+</div>
+
+### 2. 멀티모달 콘텐츠 이해 및 처리
+
+<div style="background: linear-gradient(90deg, #16213e 0%, #0f3460 100%); border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid #ff6b6b;">
+
+시스템은 최적화된 채널을 통해 콘텐츠를 자동으로 분류하고 라우팅합니다. 병렬 텍스트 및 멀티모달 처리를 위한 동시 파이프라인을 사용합니다. 변환 중 문서 계층 구조와 관계가 보존됩니다.
+
+**주요 구성 요소:**
+
+- **🎯 자율 콘텐츠 분류 및 라우팅**: 최적화된 실행 채널을 통해 다양한 콘텐츠 유형을 자동으로 식별, 분류 및 라우팅합니다.
+
+- **⚡ 동시 다중 파이프라인 아키텍처**: 전용 처리 파이프라인을 통해 텍스트 및 멀티모달 콘텐츠의 동시 실행을 구현합니다. 이 접근 방식은 콘텐츠 무결성을 유지하면서 처리량 효율성을 최대화합니다.
+
+- **🏗️ 문서 계층 추출**: 콘텐츠 변환 중 원본 문서 계층 및 요소 간 관계를 추출하고 보존합니다.
+
+</div>
+
+### 3. 멀티모달 분석 엔진
+
+<div style="background: linear-gradient(90deg, #0f3460 0%, #1a1a2e 100%); border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid #00d9ff;">
+
+시스템은 이기종 데이터 모달리티를 위한 모달리티 인식 처리 유닛을 배포합니다:
+
+**전문 분석기:**
+
+- **🔍 시각적 콘텐츠 분석기**:
+  - 이미지 분석을 위한 비전 모델 통합
+  - 시각적 의미론을 기반으로 문맥 인식 설명 캡션 생성
+  - 시각적 요소 간의 공간 관계 및 계층 구조 추출
+
+- **📊 구조화된 데이터 인터프리터**:
+  - 테이블 및 구조화된 데이터 형식의 체계적 해석 수행
+  - 데이터 트렌드 분석을 위한 통계 패턴 인식 알고리즘 구현
+  - 여러 테이블 데이터셋 간의 의미적 관계 및 종속성 식별
+
+- **📐 수학 표현식 파서**:
+  - 복잡한 수학 표현식 및 공식을 높은 정확도로 파싱
+  - 학술 워크플로우와의 원활한 통합을 위한 네이티브 LaTeX 형식 지원
+  - 수학 방정식과 도메인별 지식 베이스 간의 개념 매핑 설정
+
+- **🔧 확장 가능한 모달리티 핸들러**:
+  - 사용자 정의 및 새로운 콘텐츠 유형을 위한 구성 가능한 처리 프레임워크 제공
+  - 플러그인 아키텍처를 통한 새로운 모달리티 프로세서의 동적 통합 지원
+  - 전문 사용 사례를 위한 처리 파이프라인의 런타임 구성 지원
+
+</div>
+
+### 4. 멀티모달 지식 그래프 인덱스
+
+<div style="background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%); border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid #4ecdc4;">
+
+멀티모달 지식 그래프 구성 모듈은 문서 콘텐츠를 구조화된 의미 표현으로 변환합니다. 멀티모달 엔티티를 추출하고, 교차 모달 관계를 설정하며, 계층적 구성을 보존합니다. 시스템은 최적화된 지식 검색을 위해 가중 관련성 점수를 적용합니다.
+
+**핵심 기능:**
+
+- **🔍 멀티모달 엔티티 추출**: 중요한 멀티모달 요소를 구조화된 지식 그래프 엔티티로 변환합니다. 프로세스에는 의미적 주석 및 메타데이터 보존이 포함됩니다.
+
+- **🔗 교차 모달 관계 매핑**: 자동화된 관계 추론 알고리즘을 통해 텍스트 엔티티와 멀티모달 구성 요소 간의 의미적 연결 및 종속성을 설정합니다.
+
+- **🏗️ 계층 구조 보존**: "belongs_to" 관계 체인을 통해 원본 문서 구성을 유지합니다. 이러한 체인은 논리적 콘텐츠 계층 및 섹션 종속성을 보존합니다.
+
+- **⚖️ 가중 관계 점수**: 관계 유형에 정량적 관련성 점수를 할당합니다. 점수는 문서 구조 내의 의미적 근접성 및 문맥적 중요성을 기반으로 합니다.
+
+</div>
+
+### 5. 모달리티 인식 검색
+
+<div style="background: linear-gradient(90deg, #16213e 0%, #0f3460 100%); border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid #ff6b6b;">
+
+하이브리드 검색 시스템은 포괄적인 콘텐츠 검색을 위해 벡터 유사성 검색과 그래프 탐색 알고리즘을 결합합니다. 모달리티 인식 순위 메커니즘을 구현하고 검색된 요소 간의 관계적 일관성을 유지하여 문맥적으로 통합된 정보 전달을 보장합니다.
+
+**검색 메커니즘:**
+
+- **🔀 벡터-그래프 융합**: 벡터 유사성 검색과 그래프 탐색 알고리즘을 통합합니다. 이 접근 방식은 포괄적인 콘텐츠 검색을 위해 의미적 임베딩과 구조적 관계를 모두 활용합니다.
+
+- **📊 모달리티 인식 순위**: 콘텐츠 유형 관련성에 따라 검색 결과에 가중치를 부여하는 적응형 점수 메커니즘을 구현합니다. 시스템은 쿼리별 모달리티 선호도에 따라 순위를 조정합니다.
+
+- **🔗 관계적 일관성 유지**: 검색된 요소 간의 의미적 및 구조적 관계를 유지합니다. 이는 일관된 정보 전달 및 문맥적 무결성을 보장합니다.
+
+</div>
+
+---
+
+## 빠른 시작
+
+*AI 여정 시작하기*
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif" width="400">
+</div>
+
+### 설치
+
+#### 옵션 1: PyPI에서 설치 (권장)
+
+```bash
+# 기본 설치
+pip install raganything
+
+# 확장 형식 지원을 위한 선택적 의존성 포함:
+pip install 'raganything[all]'              # 모든 선택적 기능
+pip install 'raganything[image]'            # 이미지 형식 변환 (BMP, TIFF, GIF, WebP)
+pip install 'raganything[text]'             # 텍스트 파일 처리 (TXT, MD)
+pip install 'raganything[image,text]'       # 다중 기능
+```
+
+#### 옵션 2: 소스에서 설치
+
+```bash
+# uv 설치 (아직 설치하지 않은 경우)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 프로젝트 클론 및 uv로 설정
+git clone https://github.com/HKUDS/RAG-Anything.git
+cd RAG-Anything
+
+# 가상 환경에 패키지 및 의존성 설치
+uv sync
+
+# 네트워크 타임아웃이 발생하는 경우 (특히 opencv 패키지):
+# UV_HTTP_TIMEOUT=120 uv sync
+
+# uv로 직접 명령 실행 (권장 방식)
+uv run python examples/raganything_example.py --help
+
+# 선택적 의존성과 함께 설치
+uv sync --extra image --extra text  # 특정 extras
+uv sync --all-extras                 # 모든 선택적 기능
+```
+
+#### 선택적 의존성
+
+- **`[image]`** - BMP, TIFF, GIF, WebP 이미지 형식 처리 활성화 (Pillow 필요)
+- **`[text]`** - TXT 및 MD 파일 처리 활성화 (ReportLab 필요)
+- **`[all]`** - 모든 Python 선택적 의존성 포함
+
+> **⚠️ Office 문서 처리 요구 사항:**
+> - Office 문서 (.doc, .docx, .ppt, .pptx, .xls, .xlsx)는 **LibreOffice** 설치가 필요합니다
+> - [LibreOffice 공식 웹사이트](https://www.libreoffice.org/download/download/)에서 다운로드
+> - **Windows**: 공식 웹사이트에서 설치 프로그램 다운로드
+> - **macOS**: `brew install --cask libreoffice`
+> - **Ubuntu/Debian**: `sudo apt-get install libreoffice`
+> - **CentOS/RHEL**: `sudo yum install libreoffice`
+
+**MinerU 설치 확인:**
+
+```bash
+# 설치 확인
+mineru --version
+
+# 적절히 구성되었는지 확인
+python -c "from raganything import RAGAnything; rag = RAGAnything(); print('✅ MinerU가 올바르게 설치됨' if rag.check_parser_installation() else '❌ MinerU 설치 문제')"
+```
+
+모델은 첫 사용 시 자동으로 다운로드됩니다. 수동 다운로드는 [MinerU 모델 소스 구성](https://github.com/opendatalab/MinerU/blob/master/README.md#22-model-source-configuration)을 참조하세요.
+
+### 사용 예제
+
+#### 1. 엔드투엔드 문서 처리
+
+```python
+import asyncio
+from raganything import RAGAnything, RAGAnythingConfig
+from lightrag.llm.openai import openai_complete_if_cache, openai_embed
+from lightrag.utils import EmbeddingFunc
+
+async def main():
+    # API 구성 설정
+    api_key = "your-api-key"
+    base_url = "your-base-url"  # 선택 사항
+
+    # RAGAnything 구성 생성
+    config = RAGAnythingConfig(
+        working_dir="./rag_storage",
+        parser="mineru",  # 파서 선택: mineru 또는 docling
+        parse_method="auto",  # 파싱 방법: auto, ocr, 또는 txt
+        enable_image_processing=True,
+        enable_table_processing=True,
+        enable_equation_processing=True,
+    )
+
+    # LLM 모델 함수 정의
+    def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs):
+        return openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        )
+
+    # 이미지 처리를 위한 비전 모델 함수 정의
+    def vision_model_func(
+        prompt, system_prompt=None, history_messages=[], image_data=None, messages=None, **kwargs
+    ):
+        # messages 형식이 제공된 경우 (멀티모달 VLM 강화 쿼리용), 직접 사용
+        if messages:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=messages,
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        # 전통적인 단일 이미지 형식
+        elif image_data:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=[
+                    {"role": "system", "content": system_prompt}
+                    if system_prompt
+                    else None,
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{image_data}"
+                                },
+                            },
+                        ],
+                    }
+                    if image_data
+                    else {"role": "user", "content": prompt},
+                ],
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        # 순수 텍스트 형식
+        else:
+            return llm_model_func(prompt, system_prompt, history_messages, **kwargs)
+
+    # 임베딩 함수 정의
+    embedding_func = EmbeddingFunc(
+        embedding_dim=3072,
+        max_token_size=8192,
+        func=lambda texts: openai_embed(
+            texts,
+            model="text-embedding-3-large",
+            api_key=api_key,
+            base_url=base_url,
+        ),
+    )
+
+    # RAGAnything 초기화
+    rag = RAGAnything(
+        config=config,
+        llm_model_func=llm_model_func,
+        vision_model_func=vision_model_func,
+        embedding_func=embedding_func,
+    )
+
+    # 문서 처리
+    await rag.process_document_complete(
+        file_path="path/to/your/document.pdf",
+        output_dir="./output",
+        parse_method="auto"
+    )
+
+    # 처리된 콘텐츠 쿼리
+    # 순수 텍스트 쿼리 - 기본 지식 베이스 검색용
+    text_result = await rag.aquery(
+        "그림과 테이블에 표시된 주요 결과는 무엇인가요?",
+        mode="hybrid"
+    )
+    print("텍스트 쿼리 결과:", text_result)
+
+    # 특정 멀티모달 콘텐츠를 포함한 멀티모달 쿼리
+    multimodal_result = await rag.aquery_with_multimodal(
+        "이 공식을 설명하고 문서 내용과의 관련성을 알려주세요",
+        multimodal_content=[{
+            "type": "equation",
+            "latex": "P(d|q) = \\frac{P(q|d) \\cdot P(d)}{P(q)}",
+            "equation_caption": "문서 관련성 확률"
+        }],
+        mode="hybrid"
+    )
+    print("멀티모달 쿼리 결과:", multimodal_result)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+#### 2. 직접 멀티모달 콘텐츠 처리
+
+```python
+import asyncio
+from lightrag import LightRAG
+from lightrag.llm.openai import openai_complete_if_cache, openai_embed
+from lightrag.utils import EmbeddingFunc
+from raganything.modalprocessors import ImageModalProcessor, TableModalProcessor
+
+async def process_multimodal_content():
+    # API 구성 설정
+    api_key = "your-api-key"
+    base_url = "your-base-url"  # 선택 사항
+
+    # LightRAG 초기화
+    rag = LightRAG(
+        working_dir="./rag_storage",
+        llm_model_func=lambda prompt, system_prompt=None, history_messages=[], **kwargs: openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        ),
+        embedding_func=EmbeddingFunc(
+            embedding_dim=3072,
+            max_token_size=8192,
+            func=lambda texts: openai_embed(
+                texts,
+                model="text-embedding-3-large",
+                api_key=api_key,
+                base_url=base_url,
+            ),
+        )
+    )
+    await rag.initialize_storages()
+
+    # 이미지 처리
+    image_processor = ImageModalProcessor(
+        lightrag=rag,
+        modal_caption_func=lambda prompt, system_prompt=None, history_messages=[], image_data=None, **kwargs: openai_complete_if_cache(
+            "gpt-4o",
+            "",
+            system_prompt=None,
+            history_messages=[],
+            messages=[
+                {"role": "system", "content": system_prompt} if system_prompt else None,
+                {"role": "user", "content": [
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}}
+                ]} if image_data else {"role": "user", "content": prompt}
+            ],
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        ) if image_data else openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        )
+    )
+
+    image_content = {
+        "img_path": "path/to/image.jpg",
+        "image_caption": ["그림 1: 실험 결과"],
+        "image_footnote": ["2024년 수집된 데이터"]
+    }
+
+    description, entity_info = await image_processor.process_multimodal_content(
+        modal_content=image_content,
+        content_type="image",
+        file_path="research_paper.pdf",
+        entity_name="실험 결과 그림"
+    )
+
+    # 테이블 처리
+    table_processor = TableModalProcessor(
+        lightrag=rag,
+        modal_caption_func=lambda prompt, system_prompt=None, history_messages=[], **kwargs: openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        )
+    )
+
+    table_content = {
+        "table_body": """
+        | 방법 | 정확도 | F1-점수 |
+        |--------|----------|----------|
+        | RAGAnything | 95.2% | 0.94 |
+        | 베이스라인 | 87.3% | 0.85 |
+        """,
+        "table_caption": ["성능 비교"],
+        "table_footnote": ["테스트 데이터셋 결과"]
+    }
+
+    description, entity_info = await table_processor.process_multimodal_content(
+        modal_content=table_content,
+        content_type="table",
+        file_path="research_paper.pdf",
+        entity_name="성능 결과 테이블"
+    )
+
+if __name__ == "__main__":
+    asyncio.run(process_multimodal_content())
+```
+
+#### 3. 배치 처리
+
+```python
+# 여러 문서 처리
+await rag.process_folder_complete(
+    folder_path="./documents",
+    output_dir="./output",
+    file_extensions=[".pdf", ".docx", ".pptx"],
+    recursive=True,
+    max_workers=4
+)
+```
+
+#### 4. 커스텀 모달 프로세서
+
+```python
+from raganything.modalprocessors import GenericModalProcessor
+
+class CustomModalProcessor(GenericModalProcessor):
+    async def process_multimodal_content(self, modal_content, content_type, file_path, entity_name):
+        # 커스텀 처리 로직
+        enhanced_description = await self.analyze_custom_content(modal_content)
+        entity_info = self.create_custom_entity(enhanced_description, entity_name)
+        return await self._create_entity_and_chunk(enhanced_description, entity_info, file_path)
+```
+
+#### 5. 쿼리 옵션
+
+RAG-Anything은 세 가지 유형의 쿼리 방법을 제공합니다:
+
+**순수 텍스트 쿼리** - LightRAG를 사용한 직접 지식 베이스 검색:
+```python
+# 텍스트 쿼리를 위한 다양한 쿼리 모드
+text_result_hybrid = await rag.aquery("질문", mode="hybrid")
+text_result_local = await rag.aquery("질문", mode="local")
+text_result_global = await rag.aquery("질문", mode="global")
+text_result_naive = await rag.aquery("질문", mode="naive")
+
+# 동기 버전
+sync_text_result = rag.query("질문", mode="hybrid")
+```
+
+**VLM 강화 쿼리** - 검색된 컨텍스트의 이미지를 VLM을 사용하여 자동 분석:
+```python
+# VLM 강화 쿼리 (vision_model_func가 제공되면 자동 활성화)
+vlm_result = await rag.aquery(
+    "문서의 차트와 그림을 분석해주세요",
+    mode="hybrid"
+    # vlm_enhanced=True는 vision_model_func가 사용 가능할 때 자동 설정됨
+)
+
+# VLM 강화 수동 제어
+vlm_enabled = await rag.aquery(
+    "이 문서의 이미지에 무엇이 있나요?",
+    mode="hybrid",
+    vlm_enhanced=True  # VLM 강화 강제 활성화
+)
+
+vlm_disabled = await rag.aquery(
+    "이 문서의 이미지에 무엇이 있나요?",
+    mode="hybrid",
+    vlm_enhanced=False  # VLM 강화 강제 비활성화
+)
+
+# 문서에 이미지가 포함된 경우, VLM이 직접 보고 분석할 수 있습니다
+# 시스템이 자동으로:
+# 1. 이미지 경로가 포함된 관련 컨텍스트 검색
+# 2. 이미지를 Base64로 인코딩
+# 3. 포괄적인 분석을 위해 텍스트 컨텍스트와 이미지를 VLM에 전송
+```
+
+**멀티모달 쿼리** - 특정 멀티모달 콘텐츠 분석을 포함한 강화된 쿼리:
+```python
+# 테이블 데이터를 포함한 쿼리
+table_result = await rag.aquery_with_multimodal(
+    "이 성능 메트릭을 문서 내용과 비교해주세요",
+    multimodal_content=[{
+        "type": "table",
+        "table_data": """Method,Accuracy,Speed
+                        RAGAnything,95.2%,120ms
+                        Traditional,87.3%,180ms""",
+        "table_caption": "성능 비교"
+    }],
+    mode="hybrid"
+)
+
+# 수식 콘텐츠를 포함한 쿼리
+equation_result = await rag.aquery_with_multimodal(
+    "이 공식을 설명하고 문서 내용과의 관련성을 알려주세요",
+    multimodal_content=[{
+        "type": "equation",
+        "latex": "P(d|q) = \\frac{P(q|d) \\cdot P(d)}{P(q)}",
+        "equation_caption": "문서 관련성 확률"
+    }],
+    mode="hybrid"
+)
+```
+
+#### 6. 기존 LightRAG 인스턴스 로드
+
+```python
+import asyncio
+from raganything import RAGAnything, RAGAnythingConfig
+from lightrag import LightRAG
+from lightrag.llm.openai import openai_complete_if_cache, openai_embed
+from lightrag.kg.shared_storage import initialize_pipeline_status
+from lightrag.utils import EmbeddingFunc
+import os
+
+async def load_existing_lightrag():
+    # API 구성 설정
+    api_key = "your-api-key"
+    base_url = "your-base-url"  # 선택 사항
+
+    # 먼저 기존 LightRAG 인스턴스 생성 또는 로드
+    lightrag_working_dir = "./existing_lightrag_storage"
+
+    # 이전 LightRAG 인스턴스가 있는지 확인
+    if os.path.exists(lightrag_working_dir) and os.listdir(lightrag_working_dir):
+        print("✅ 기존 LightRAG 인스턴스를 찾았습니다, 로드 중...")
+    else:
+        print("❌ 기존 LightRAG 인스턴스를 찾지 못했습니다, 새로 생성합니다")
+
+    # 구성으로 LightRAG 인스턴스 생성/로드
+    lightrag_instance = LightRAG(
+        working_dir=lightrag_working_dir,
+        llm_model_func=lambda prompt, system_prompt=None, history_messages=[], **kwargs: openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        ),
+        embedding_func=EmbeddingFunc(
+            embedding_dim=3072,
+            max_token_size=8192,
+            func=lambda texts: openai_embed(
+                texts,
+                model="text-embedding-3-large",
+                api_key=api_key,
+                base_url=base_url,
+            ),
+        )
+    )
+
+    # 스토리지 초기화 (사용 가능한 경우 기존 데이터 로드)
+    await lightrag_instance.initialize_storages()
+    await initialize_pipeline_status()
+
+    # 이미지 처리를 위한 비전 모델 함수 정의
+    def vision_model_func(
+        prompt, system_prompt=None, history_messages=[], image_data=None, messages=None, **kwargs
+    ):
+        if messages:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=messages,
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        elif image_data:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=[
+                    {"role": "system", "content": system_prompt}
+                    if system_prompt
+                    else None,
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{image_data}"
+                                },
+                            },
+                        ],
+                    }
+                    if image_data
+                    else {"role": "user", "content": prompt},
+                ],
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        else:
+            return lightrag_instance.llm_model_func(prompt, system_prompt, history_messages, **kwargs)
+
+    # 기존 LightRAG 인스턴스를 사용하여 RAGAnything 초기화
+    rag = RAGAnything(
+        lightrag=lightrag_instance,  # 기존 LightRAG 인스턴스 전달
+        vision_model_func=vision_model_func,
+        # 참고: working_dir, llm_model_func, embedding_func 등은 lightrag_instance에서 상속됨
+    )
+
+    # 기존 지식 베이스 쿼리
+    result = await rag.aquery(
+        "이 LightRAG 인스턴스에서 어떤 데이터가 처리되었나요?",
+        mode="hybrid"
+    )
+    print("쿼리 결과:", result)
+
+    # 기존 LightRAG 인스턴스에 새 멀티모달 문서 추가
+    await rag.process_document_complete(
+        file_path="path/to/new/multimodal_document.pdf",
+        output_dir="./output"
+    )
+
+if __name__ == "__main__":
+    asyncio.run(load_existing_lightrag())
+```
+
+#### 7. 직접 콘텐츠 리스트 삽입
+
+미리 파싱된 콘텐츠 리스트가 있는 시나리오(예: 외부 파서 또는 이전 처리에서)의 경우, 문서 파싱 없이 RAGAnything에 직접 삽입할 수 있습니다:
+
+```python
+import asyncio
+from raganything import RAGAnything, RAGAnythingConfig
+from lightrag.llm.openai import openai_complete_if_cache, openai_embed
+from lightrag.utils import EmbeddingFunc
+
+async def insert_content_list_example():
+    # API 구성 설정
+    api_key = "your-api-key"
+    base_url = "your-base-url"  # 선택 사항
+
+    # RAGAnything 구성 생성
+    config = RAGAnythingConfig(
+        working_dir="./rag_storage",
+        enable_image_processing=True,
+        enable_table_processing=True,
+        enable_equation_processing=True,
+    )
+
+    # 모델 함수 정의
+    def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs):
+        return openai_complete_if_cache(
+            "gpt-4o-mini",
+            prompt,
+            system_prompt=system_prompt,
+            history_messages=history_messages,
+            api_key=api_key,
+            base_url=base_url,
+            **kwargs,
+        )
+
+    def vision_model_func(prompt, system_prompt=None, history_messages=[], image_data=None, messages=None, **kwargs):
+        if messages:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=messages,
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        elif image_data:
+            return openai_complete_if_cache(
+                "gpt-4o",
+                "",
+                system_prompt=None,
+                history_messages=[],
+                messages=[
+                    {"role": "system", "content": system_prompt} if system_prompt else None,
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}}
+                        ],
+                    } if image_data else {"role": "user", "content": prompt},
+                ],
+                api_key=api_key,
+                base_url=base_url,
+                **kwargs,
+            )
+        else:
+            return llm_model_func(prompt, system_prompt, history_messages, **kwargs)
+
+    embedding_func = EmbeddingFunc(
+        embedding_dim=3072,
+        max_token_size=8192,
+        func=lambda texts: openai_embed(
+            texts,
+            model="text-embedding-3-large",
+            api_key=api_key,
+            base_url=base_url,
+        ),
+    )
+
+    # RAGAnything 초기화
+    rag = RAGAnything(
+        config=config,
+        llm_model_func=llm_model_func,
+        vision_model_func=vision_model_func,
+        embedding_func=embedding_func,
+    )
+
+    # 예제: 외부 소스에서 미리 파싱된 콘텐츠 리스트
+    content_list = [
+        {
+            "type": "text",
+            "text": "연구 논문의 서론 섹션입니다.",
+            "page_idx": 0  # 이 콘텐츠가 나타나는 페이지 번호
+        },
+        {
+            "type": "image",
+            "img_path": "/absolute/path/to/figure1.jpg",  # 중요: 절대 경로 사용
+            "image_caption": ["그림 1: 시스템 아키텍처"],
+            "image_footnote": ["출처: 저자의 원본 설계"],
+            "page_idx": 1  # 이 이미지가 나타나는 페이지 번호
+        },
+        {
+            "type": "table",
+            "table_body": "| 방법 | 정확도 | F1-점수 |\n|--------|----------|----------|\n| Ours | 95.2% | 0.94 |\n| Baseline | 87.3% | 0.85 |",
+            "table_caption": ["표 1: 성능 비교"],
+            "table_footnote": ["테스트 데이터셋 결과"],
+            "page_idx": 2  # 이 테이블이 나타나는 페이지 번호
+        },
+        {
+            "type": "equation",
+            "latex": "P(d|q) = \\frac{P(q|d) \\cdot P(d)}{P(q)}",
+            "text": "문서 관련성 확률 공식",
+            "page_idx": 3  # 이 수식이 나타나는 페이지 번호
+        },
+        {
+            "type": "text",
+            "text": "결론적으로, 우리 방법은 모든 메트릭에서 우수한 성능을 보여줍니다.",
+            "page_idx": 4  # 이 콘텐츠가 나타나는 페이지 번호
+        }
+    ]
+
+    # 콘텐츠 리스트 직접 삽입
+    await rag.insert_content_list(
+        content_list=content_list,
+        file_path="research_paper.pdf",  # 인용을 위한 참조 파일명
+        split_by_character=None,         # 선택적 텍스트 분할
+        split_by_character_only=False,   # 선택적 텍스트 분할 모드
+        doc_id=None,                     # 선택적 커스텀 문서 ID (제공되지 않으면 자동 생성)
+        display_stats=True               # 콘텐츠 통계 표시
+    )
+
+    # 삽입된 콘텐츠 쿼리
+    result = await rag.aquery(
+        "연구에서 언급된 주요 결과와 성능 메트릭은 무엇인가요?",
+        mode="hybrid"
+    )
+    print("쿼리 결과:", result)
+
+    # 다른 문서 ID로 여러 콘텐츠 리스트 삽입도 가능
+    another_content_list = [
+        {
+            "type": "text",
+            "text": "다른 문서의 콘텐츠입니다.",
+            "page_idx": 0  # 이 콘텐츠가 나타나는 페이지 번호
+        },
+        {
+            "type": "table",
+            "table_body": "| 기능 | 값 |\n|---------|-------|\n| 속도 | 빠름 |\n| 정확도 | 높음 |",
+            "table_caption": ["기능 비교"],
+            "page_idx": 1  # 이 테이블이 나타나는 페이지 번호
+        }
+    ]
+
+    await rag.insert_content_list(
+        content_list=another_content_list,
+        file_path="another_document.pdf",
+        doc_id="custom-doc-id-123"  # 커스텀 문서 ID
+    )
+
+if __name__ == "__main__":
+    asyncio.run(insert_content_list_example())
+```
+
+**콘텐츠 리스트 형식:**
+
+`content_list`는 각 항목이 다음을 포함하는 딕셔너리인 표준 형식을 따라야 합니다:
+
+- **텍스트 콘텐츠**: `{"type": "text", "text": "콘텐츠 텍스트", "page_idx": 0}`
+- **이미지 콘텐츠**: `{"type": "image", "img_path": "/absolute/path/to/image.jpg", "image_caption": ["캡션"], "image_footnote": ["노트"], "page_idx": 1}`
+- **테이블 콘텐츠**: `{"type": "table", "table_body": "마크다운 테이블", "table_caption": ["캡션"], "table_footnote": ["노트"], "page_idx": 2}`
+- **수식 콘텐츠**: `{"type": "equation", "latex": "LaTeX 공식", "text": "설명", "page_idx": 3}`
+- **일반 콘텐츠**: `{"type": "custom_type", "content": "모든 콘텐츠", "page_idx": 4}`
+
+**중요 사항:**
+- **`img_path`**: 이미지 파일의 절대 경로여야 합니다 (예: `/home/user/images/chart.jpg` 또는 `C:\Users\user\images\chart.jpg`)
+- **`page_idx`**: 원본 문서에서 콘텐츠가 나타나는 페이지 번호를 나타냅니다 (0 기반 인덱싱)
+- **콘텐츠 순서**: 항목은 리스트에 나타나는 순서대로 처리됩니다
+
+이 방법은 다음 경우에 특히 유용합니다:
+- 외부 파서(MinerU/Docling이 아닌)의 콘텐츠가 있는 경우
+- 프로그래밍 방식으로 생성된 콘텐츠를 처리하려는 경우
+- 여러 소스의 콘텐츠를 단일 지식 베이스에 삽입해야 하는 경우
+- 재사용하려는 캐시된 파싱 결과가 있는 경우
+
+---
+
+## 예제
+
+*실용적인 구현 데모*
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212257455-13e3e01e-d6a6-45dc-bb92-3ab87b12dfc1.gif" width="300">
+</div>
+
+`examples/` 디렉토리에는 포괄적인 사용 예제가 포함되어 있습니다:
+
+- **`raganything_example.py`**: MinerU를 사용한 엔드투엔드 문서 처리
+- **`modalprocessors_example.py`**: 직접 멀티모달 콘텐츠 처리
+- **`office_document_test.py`**: MinerU를 사용한 Office 문서 파싱 테스트 (API 키 불필요)
+- **`image_format_test.py`**: MinerU를 사용한 이미지 형식 파싱 테스트 (API 키 불필요)
+- **`text_format_test.py`**: MinerU를 사용한 텍스트 형식 파싱 테스트 (API 키 불필요)
+
+**예제 실행:**
+
+```bash
+# 파서 선택과 함께 엔드투엔드 처리
+python examples/raganything_example.py path/to/document.pdf --api-key YOUR_API_KEY --parser mineru
+
+# 직접 모달 처리
+python examples/modalprocessors_example.py --api-key YOUR_API_KEY
+
+# Office 문서 파싱 테스트 (MinerU 전용)
+python examples/office_document_test.py --file path/to/document.docx
+
+# 이미지 형식 파싱 테스트 (MinerU 전용)
+python examples/image_format_test.py --file path/to/image.bmp
+
+# 텍스트 형식 파싱 테스트 (MinerU 전용)
+python examples/text_format_test.py --file path/to/document.md
+
+# LibreOffice 설치 확인
+python examples/office_document_test.py --check-libreoffice --file dummy
+
+# PIL/Pillow 설치 확인
+python examples/image_format_test.py --check-pillow --file dummy
+
+# ReportLab 설치 확인
+python examples/text_format_test.py --check-reportlab --file dummy
+```
+
+---
+
+## 구성
+
+*시스템 최적화 매개변수*
+
+### 환경 변수
+
+`.env` 파일 생성 (`.env.example` 참조):
+
+```bash
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_BASE_URL=your_base_url  # 선택 사항
+OUTPUT_DIR=./output             # 파싱된 문서의 기본 출력 디렉토리
+PARSER=mineru                   # 파서 선택: mineru 또는 docling
+PARSE_METHOD=auto              # 파싱 방법: auto, ocr, 또는 txt
+```
+
+**참고:** 하위 호환성을 위해 레거시 환경 변수 이름도 여전히 지원됩니다:
+- `MINERU_PARSE_METHOD`는 더 이상 사용되지 않습니다, `PARSE_METHOD`를 사용하세요
+
+> **참고**: API 키는 LLM 통합을 사용한 전체 RAG 처리에만 필요합니다. 파싱 테스트 파일(`office_document_test.py` 및 `image_format_test.py`)은 파서 기능만 테스트하며 API 키가 필요하지 않습니다.
+
+### 파서 구성
+
+RAGAnything은 이제 각각 특정 장점을 가진 여러 파서를 지원합니다:
+
+#### MinerU 파서
+- PDF, 이미지, Office 문서 등 다양한 형식 지원
+- 강력한 OCR 및 테이블 추출 기능
+- GPU 가속 지원
+
+#### Docling 파서
+- Office 문서 및 HTML 파일에 최적화
+- 더 나은 문서 구조 보존
+- 여러 Office 형식에 대한 네이티브 지원
+
+### MinerU 구성
+
+```bash
+# MinerU 2.0은 구성 파일 대신 명령줄 매개변수 사용
+# 사용 가능한 옵션 확인:
+mineru --help
+
+# 일반적인 구성:
+mineru -p input.pdf -o output_dir -m auto    # 자동 파싱 모드
+mineru -p input.pdf -o output_dir -m ocr     # OCR 중심 파싱
+mineru -p input.pdf -o output_dir -b pipeline --device cuda  # GPU 가속
+```
+
+RAGAnything 매개변수를 통해 파싱을 구성할 수도 있습니다:
+
+```python
+# 파서 선택과 함께 기본 파싱 구성
+await rag.process_document_complete(
+    file_path="document.pdf",
+    output_dir="./output/",
+    parse_method="auto",          # 또는 "ocr", "txt"
+    parser="mineru"               # 선택 사항: "mineru" 또는 "docling"
+)
+
+# 특수 매개변수를 사용한 고급 파싱 구성
+await rag.process_document_complete(
+    file_path="document.pdf",
+    output_dir="./output/",
+    parse_method="auto",          # 파싱 방법: "auto", "ocr", "txt"
+    parser="mineru",              # 파서 선택: "mineru" 또는 "docling"
+
+    # MinerU 특수 매개변수 - 지원되는 모든 kwargs:
+    lang="ch",                   # OCR 최적화를 위한 문서 언어 (예: "ch", "en", "ja")
+    device="cuda:0",             # 추론 장치: "cpu", "cuda", "cuda:0", "npu", "mps"
+    start_page=0,                # 시작 페이지 번호 (0 기반, PDF용)
+    end_page=10,                 # 종료 페이지 번호 (0 기반, PDF용)
+    formula=True,                # 수식 파싱 활성화
+    table=True,                  # 테이블 파싱 활성화
+    backend="pipeline",          # 파싱 백엔드: pipeline|vlm-transformers|vlm-sglang-engine|vlm-sglang-client.
+    source="huggingface",        # 모델 소스: "huggingface", "modelscope", "local"
+    # vlm_url="http://127.0.0.1:3000" # backend=vlm-sglang-client 사용 시 서비스 주소
+
+    # 표준 RAGAnything 매개변수
+    display_stats=True,          # 콘텐츠 통계 표시
+    split_by_character=None,     # 텍스트 분할을 위한 선택적 문자
+    doc_id=None                  # 선택적 문서 ID
+)
+```
+
+> **참고**: MinerU 2.0은 더 이상 `magic-pdf.json` 구성 파일을 사용하지 않습니다. 모든 설정은 이제 명령줄 매개변수 또는 함수 인수로 전달됩니다. RAG-Anything은 이제 여러 문서 파서를 지원합니다 - 필요에 따라 MinerU와 Docling 중에서 선택할 수 있습니다.
+
+### 처리 요구 사항
+
+다양한 콘텐츠 유형에는 특정 선택적 의존성이 필요합니다:
+
+- **Office 문서** (.doc, .docx, .ppt, .pptx, .xls, .xlsx): [LibreOffice](https://www.libreoffice.org/download/download/) 설치
+- **확장 이미지 형식** (.bmp, .tiff, .gif, .webp): `pip install raganything[image]`로 설치
+- **텍스트 파일** (.txt, .md): `pip install raganything[text]`로 설치
+
+> **📋 빠른 설치**: 모든 형식 지원을 활성화하려면 `pip install raganything[all]`을 사용하세요 (Python 의존성만 - LibreOffice는 여전히 별도 설치 필요)
+
+---
+
+## 지원 콘텐츠 유형
+
+### 문서 형식
+
+- **PDF** - 연구 논문, 보고서, 프레젠테이션
+- **Office 문서** - DOC, DOCX, PPT, PPTX, XLS, XLSX
+- **이미지** - JPG, PNG, BMP, TIFF, GIF, WebP
+- **텍스트 파일** - TXT, MD
+
+### 멀티모달 요소
+
+- **이미지** - 사진, 다이어그램, 차트, 스크린샷
+- **테이블** - 데이터 테이블, 비교 차트, 통계 요약
+- **수식** - LaTeX 형식의 수학 공식
+- **일반 콘텐츠** - 확장 가능한 프로세서를 통한 커스텀 콘텐츠 유형
+
+*형식별 의존성 설치에 대해서는 [구성](#-구성) 섹션을 참조하세요.*
+
+---
+
+## 인용
+
+*학술 참조*
+
+<div align="center">
+  <div style="width: 60px; height: 60px; margin: 20px auto; position: relative;">
+    <div style="width: 100%; height: 100%; border: 2px solid #00d9ff; border-radius: 50%; position: relative;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: #00d9ff;">📖</div>
+    </div>
+    <div style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; background: white; border-right: 2px solid #00d9ff; border-bottom: 2px solid #00d9ff; transform: rotate(45deg);"></div>
+  </div>
+</div>
+
+RAG-Anything이 연구에 유용했다면, 논문을 인용해 주세요:
+
+```bibtex
+@misc{guo2025raganythingallinoneragframework,
+      title={RAG-Anything: All-in-One RAG Framework},
+      author={Zirui Guo and Xubin Ren and Lingrui Xu and Jiahao Zhang and Chao Huang},
+      year={2025},
+      eprint={2510.12323},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2510.12323},
+}
+```
+
+---
+
+## 관련 프로젝트
+
+*에코시스템 및 확장*
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/HKUDS/LightRAG">
+          <div style="width: 100px; height: 100px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%); border-radius: 15px; border: 1px solid rgba(0, 217, 255, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <span style="font-size: 32px;">⚡</span>
+          </div>
+          <b>LightRAG</b><br>
+          <sub>간단하고 빠른 RAG</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/HKUDS/VideoRAG">
+          <div style="width: 100px; height: 100px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%); border-radius: 15px; border: 1px solid rgba(0, 217, 255, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <span style="font-size: 32px;">🎥</span>
+          </div>
+          <b>VideoRAG</b><br>
+          <sub>초장문맥 비디오 RAG</sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/HKUDS/MiniRAG">
+          <div style="width: 100px; height: 100px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%); border-radius: 15px; border: 1px solid rgba(0, 217, 255, 0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+            <span style="font-size: 32px;">✨</span>
+          </div>
+          <b>MiniRAG</b><br>
+          <sub>매우 간단한 RAG</sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
+## 스타 히스토리
+
+*커뮤니티 성장 궤적*
+
+<div align="center">
+  <a href="https://star-history.com/#HKUDS/RAG-Anything&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=HKUDS/RAG-Anything&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=HKUDS/RAG-Anything&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=HKUDS/RAG-Anything&type=Date" style="border-radius: 15px; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);" />
+    </picture>
+  </a>
+</div>
+
+---
+
+## 기여
+
+*혁신에 참여하기*
+
+<div align="center">
+  소중한 기여를 해주신 모든 기여자분들께 감사드립니다.
+</div>
+
+<div align="center">
+  <a href="https://github.com/HKUDS/RAG-Anything/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=HKUDS/RAG-Anything" style="border-radius: 15px; box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);" />
+  </a>
+</div>
+
+---
+
+<div align="center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+  <div>
+    <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="500">
+  </div>
+  <div style="margin-top: 20px;">
+    <a href="https://github.com/HKUDS/RAG-Anything" style="text-decoration: none;">
+      <img src="https://img.shields.io/badge/⭐%20GitHub에서%20스타%20주세요-1a1a2e?style=for-the-badge&logo=github&logoColor=white">
+    </a>
+    <a href="https://github.com/HKUDS/RAG-Anything/issues" style="text-decoration: none;">
+      <img src="https://img.shields.io/badge/🐛%20이슈%20보고-ff6b6b?style=for-the-badge&logo=github&logoColor=white">
+    </a>
+    <a href="https://github.com/HKUDS/RAG-Anything/discussions" style="text-decoration: none;">
+      <img src="https://img.shields.io/badge/💬%20토론-4ecdc4?style=for-the-badge&logo=github&logoColor=white">
+    </a>
+  </div>
+</div>
+
+<div align="center">
+  <div style="width: 100%; max-width: 600px; margin: 20px auto; padding: 20px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%); border-radius: 15px; border: 1px solid rgba(0, 217, 255, 0.2);">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px;">
+      <span style="font-size: 24px;">⭐</span>
+      <span style="color: #00d9ff; font-size: 18px;">RAG-Anything을 방문해 주셔서 감사합니다!</span>
+      <span style="font-size: 24px;">⭐</span>
+    </div>
+    <div style="margin-top: 10px; color: #00d9ff; font-size: 16px;">멀티모달 AI의 미래를 함께 만들어갑니다</div>
+  </div>
+</div>
