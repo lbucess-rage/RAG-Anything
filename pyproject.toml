@@ -21,10 +21,15 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
+    "asyncpg>=0.31.0",
+    "fastapi>=0.128.0",
     "huggingface_hub",
     "lightrag-hku",
     "mineru[core]",
+    "neo4j>=6.0.3",
+    "python-multipart>=0.0.21",
     "tqdm",
+    "uvicorn>=0.40.0",
 ]
 
 [project.optional-dependencies]

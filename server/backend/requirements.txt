@@ -1,0 +1,24 @@
+# RAG-Anything API Server Dependencies
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+starlette>=0.35.0
+
+# Pydantic
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Async
+httpx>=0.26.0
+aiofiles>=23.2.0
+
+# Cache
+redis>=5.0.0
+
+# RAG-Anything (local package)
+# pip install -e ../..
+
+# Utilities
+python-multipart>=0.0.6
+python-dotenv>=1.0.0
