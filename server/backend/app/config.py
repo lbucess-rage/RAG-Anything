@@ -31,7 +31,31 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://localhost:8080"]
 
-    # RAG-Anything 설정
+    # LightRAG API 서버 설정 (Proxy 대상)
+    LIGHTRAG_API_HOST: str = "http://10.62.146.92:9621"
+    LIGHTRAG_API_KEY: Optional[str] = None
+    LIGHTRAG_API_USERNAME: str = "admin"
+    LIGHTRAG_API_PASSWORD: str = "admin123"
+    LIGHTRAG_API_TIMEOUT: int = 300  # 5분
+
+    # 문서 저장소 설정
+    DOCUMENT_STORAGE_PATH: str = Field(default="./document_storage")
+    DOCUMENT_MAX_SIZE_MB: int = 100  # 최대 파일 크기
+    DOCUMENT_ALLOWED_EXTENSIONS: List[str] = [
+        ".pdf", ".docx", ".doc", ".pptx", ".ppt",
+        ".xlsx", ".xls", ".txt", ".md", ".csv"
+    ]
+
+    # 문서 중복 검사 설정
+    DOCUMENT_SIMILARITY_THRESHOLD: float = 0.9  # 파일명 유사도 임계값
+    DOCUMENT_VERSION_PATTERNS: List[str] = [
+        r"_v\d+", r"_ver\d+", r"_version\d+",  # _v1, _ver2, _version3
+        r"_\d{8}", r"_\d{4}-\d{2}-\d{2}",  # _20240101, _2024-01-01
+        r"_최종", r"_final", r"_수정", r"_revised",
+        r"\(\d+\)", r"_copy\d*",  # (1), _copy, _copy2
+    ]
+
+    # RAG-Anything 설정 (문서 처리용)
     WORKING_DIR: str = Field(default="./rag_storage")
     PARSER: str = "mineru"
     PARSE_METHOD: str = "auto"
