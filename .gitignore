@@ -77,5 +77,4 @@ memory-bank/
 # AI
 .claude/
 .cursor/
-CLAUDE.md
 server/backend/document_storage/
