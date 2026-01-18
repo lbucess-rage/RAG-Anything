@@ -29,6 +29,30 @@ class RAGAnythingConfig:
     parser: str = field(default=get_env_value("PARSER", "mineru", str))
     """Parser selection: 'mineru' or 'docling'."""
 
+    # MinerU Performance Configuration
+    # ---
+    mineru_backend: str = field(
+        default=get_env_value("MINERU_BACKEND", "hybrid-auto-engine", str)
+    )
+    """MinerU backend: 'pipeline', 'hybrid-auto-engine', 'vlm-auto-engine', etc.
+    - pipeline: CPU compatible, 82+ accuracy, 6GB VRAM
+    - hybrid-auto-engine: VLM+pipeline, 90+ accuracy, 10GB VRAM (recommended)
+    - vlm-auto-engine: Highest accuracy, 8GB VRAM
+    """
+
+    mineru_device: str = field(
+        default=get_env_value("MINERU_DEVICE", "cuda:0", str)
+    )
+    """Device for MinerU inference: 'cpu', 'cuda', 'cuda:0', 'mps', etc.
+    Only applies to 'pipeline' backend."""
+
+    mineru_vlm_url: str = field(
+        default=get_env_value("MINERU_VLM_URL", "", str)
+    )
+    """VLM server URL for MinerU vlm-http-client backend.
+    Example: 'http://localhost:18008/v1'
+    Required when using 'vlm-http-client' or 'hybrid-http-client' backend."""
+
     display_content_stats: bool = field(
         default=get_env_value("DISPLAY_CONTENT_STATS", True, bool)
     )
@@ -36,6 +60,13 @@ class RAGAnythingConfig:
 
     # Multimodal Processing Configuration
     # ---
+    vlm_response_language: str = field(
+        default=get_env_value("VLM_RESPONSE_LANGUAGE", "Korean", str)
+    )
+    """Language for VLM (Vision Language Model) responses.
+    Examples: 'Korean', 'English', 'Japanese', 'Chinese', etc.
+    This ensures consistent language in image/table analysis for better knowledge graph integration."""
+
     enable_image_processing: bool = field(
         default=get_env_value("ENABLE_IMAGE_PROCESSING", True, bool)
     )

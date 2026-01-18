@@ -365,6 +365,7 @@ class BaseModalProcessor:
         lightrag: LightRAG,
         modal_caption_func,
         context_extractor: ContextExtractor = None,
+        response_language: str = "Korean",
     ):
         """Initialize base processor
 
@@ -372,9 +373,11 @@ class BaseModalProcessor:
             lightrag: LightRAG instance
             modal_caption_func: Function for generating descriptions
             context_extractor: Context extractor instance
+            response_language: Language for VLM responses (e.g., 'Korean', 'English')
         """
         self.lightrag = lightrag
         self.modal_caption_func = modal_caption_func
+        self.response_language = response_language
 
         # Use LightRAG's storage instances
         self.text_chunks_db = lightrag.text_chunks
@@ -801,6 +804,7 @@ class ImageModalProcessor(BaseModalProcessor):
         lightrag: LightRAG,
         modal_caption_func,
         context_extractor: ContextExtractor = None,
+        response_language: str = "Korean",
     ):
         """Initialize image processor
 
@@ -808,8 +812,9 @@ class ImageModalProcessor(BaseModalProcessor):
             lightrag: LightRAG instance
             modal_caption_func: Function for generating descriptions (supporting image understanding)
             context_extractor: Context extractor instance
+            response_language: Language for VLM responses (e.g., 'Korean', 'English')
         """
-        super().__init__(lightrag, modal_caption_func, context_extractor)
+        super().__init__(lightrag, modal_caption_func, context_extractor, response_language)
 
     def _encode_image_to_base64(self, image_path: str) -> str:
         """Encode image to base64"""
@@ -887,6 +892,7 @@ class ImageModalProcessor(BaseModalProcessor):
                     image_path=image_path,
                     captions=captions if captions else "None",
                     footnotes=footnotes if footnotes else "None",
+                    response_language=self.response_language,
                 )
             else:
                 vision_prompt = PROMPTS["vision_prompt"].format(
@@ -896,6 +902,7 @@ class ImageModalProcessor(BaseModalProcessor):
                     image_path=image_path,
                     captions=captions if captions else "None",
                     footnotes=footnotes if footnotes else "None",
+                    response_language=self.response_language,
                 )
 
             # Encode image to base64
@@ -907,7 +914,9 @@ class ImageModalProcessor(BaseModalProcessor):
             response = await self.modal_caption_func(
                 vision_prompt,
                 image_data=image_base64,
-                system_prompt=PROMPTS["IMAGE_ANALYSIS_SYSTEM"],
+                system_prompt=PROMPTS["IMAGE_ANALYSIS_SYSTEM"].format(
+                    response_language=self.response_language
+                ),
             )
 
             # Parse response (reuse existing logic)
@@ -1085,6 +1094,7 @@ class TableModalProcessor(BaseModalProcessor):
                     table_caption=table_caption if table_caption else "None",
                     table_body=table_body,
                     table_footnote=table_footnote if table_footnote else "None",
+                    response_language=self.response_language,
                 )
             else:
                 table_prompt = PROMPTS["table_prompt"].format(
@@ -1095,12 +1105,15 @@ class TableModalProcessor(BaseModalProcessor):
                     table_caption=table_caption if table_caption else "None",
                     table_body=table_body,
                     table_footnote=table_footnote if table_footnote else "None",
+                    response_language=self.response_language,
                 )
 
             # Call LLM for table analysis
             response = await self.modal_caption_func(
                 table_prompt,
-                system_prompt=PROMPTS["TABLE_ANALYSIS_SYSTEM"],
+                system_prompt=PROMPTS["TABLE_ANALYSIS_SYSTEM"].format(
+                    response_language=self.response_language
+                ),
             )
 
             # Parse response (reuse existing logic)
@@ -1275,6 +1288,7 @@ class EquationModalProcessor(BaseModalProcessor):
                     entity_name=entity_name
                     if entity_name
                     else "descriptive name for this equation",
+                    response_language=self.response_language,
                 )
             else:
                 equation_prompt = PROMPTS["equation_prompt"].format(
@@ -1283,12 +1297,15 @@ class EquationModalProcessor(BaseModalProcessor):
                     entity_name=entity_name
                     if entity_name
                     else "descriptive name for this equation",
+                    response_language=self.response_language,
                 )
 
             # Call LLM for equation analysis
             response = await self.modal_caption_func(
                 equation_prompt,
-                system_prompt=PROMPTS["EQUATION_ANALYSIS_SYSTEM"],
+                system_prompt=PROMPTS["EQUATION_ANALYSIS_SYSTEM"].format(
+                    response_language=self.response_language
+                ),
             )
 
             # Parse response (reuse existing logic)
@@ -1447,6 +1464,7 @@ class GenericModalProcessor(BaseModalProcessor):
                     if entity_name
                     else f"descriptive name for this {content_type}",
                     content=str(modal_content),
+                    response_language=self.response_language,
                 )
             else:
                 generic_prompt = PROMPTS["generic_prompt"].format(
@@ -1455,13 +1473,15 @@ class GenericModalProcessor(BaseModalProcessor):
                     if entity_name
                     else f"descriptive name for this {content_type}",
                     content=str(modal_content),
+                    response_language=self.response_language,
                 )
 
             # Call LLM for generic analysis
             response = await self.modal_caption_func(
                 generic_prompt,
                 system_prompt=PROMPTS["GENERIC_ANALYSIS_SYSTEM"].format(
-                    content_type=content_type
+                    content_type=content_type,
+                    response_language=self.response_language,
                 ),
             )
 

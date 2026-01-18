@@ -336,10 +336,23 @@ class ProcessorMixin:
                 DoclingParser() if self.config.parser == "docling" else MineruParser()
             )
 
+            # For MinerU parser, inject config settings into kwargs if not already provided
+            if self.config.parser == "mineru":
+                if "backend" not in kwargs and self.config.mineru_backend:
+                    kwargs["backend"] = self.config.mineru_backend
+                if "device" not in kwargs and self.config.mineru_device:
+                    kwargs["device"] = self.config.mineru_device
+                if "vlm_url" not in kwargs and self.config.mineru_vlm_url:
+                    kwargs["vlm_url"] = self.config.mineru_vlm_url
+
             # Log parser and method information
             self.logger.info(
                 f"Using {self.config.parser} parser with method: {parse_method}"
             )
+            if self.config.parser == "mineru":
+                self.logger.info(
+                    f"MinerU backend: {kwargs.get('backend', 'default')}, device: {kwargs.get('device', 'default')}"
+                )
 
             if ext in [".pdf"]:
                 self.logger.info("Detected PDF file, using parser for PDF...")

@@ -812,9 +812,19 @@ class MineruParser(Parser):
 
         file_stem_subdir = output_dir / file_stem
         if file_stem_subdir.exists():
-            md_file = file_stem_subdir / method / f"{file_stem}.md"
-            json_file = file_stem_subdir / method / f"{file_stem}_content_list.json"
-            images_base_dir = file_stem_subdir / method
+            # MinerU 2.x uses hybrid_{method} directory structure (e.g., hybrid_auto)
+            method_dir = file_stem_subdir / method
+            hybrid_method_dir = file_stem_subdir / f"hybrid_{method}"
+
+            # Try hybrid_{method} first (MinerU 2.x), then fall back to method (older versions)
+            if hybrid_method_dir.exists():
+                md_file = hybrid_method_dir / f"{file_stem}.md"
+                json_file = hybrid_method_dir / f"{file_stem}_content_list.json"
+                images_base_dir = hybrid_method_dir
+            elif method_dir.exists():
+                md_file = method_dir / f"{file_stem}.md"
+                json_file = method_dir / f"{file_stem}_content_list.json"
+                images_base_dir = method_dir
 
         # Read markdown content
         md_content = ""

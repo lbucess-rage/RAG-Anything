@@ -187,11 +187,15 @@ class RAGAnything(QueryMixin, ProcessorMixin, BatchMixin):
         # Create different multimodal processors based on configuration
         self.modal_processors = {}
 
+        # Get VLM response language from config
+        vlm_response_language = self.config.vlm_response_language
+
         if self.config.enable_image_processing:
             self.modal_processors["image"] = ImageModalProcessor(
                 lightrag=self.lightrag,
                 modal_caption_func=self.vision_model_func or self.llm_model_func,
                 context_extractor=self.context_extractor,
+                response_language=vlm_response_language,
             )
 
         if self.config.enable_table_processing:
@@ -199,6 +203,7 @@ class RAGAnything(QueryMixin, ProcessorMixin, BatchMixin):
                 lightrag=self.lightrag,
                 modal_caption_func=self.llm_model_func,
                 context_extractor=self.context_extractor,
+                response_language=vlm_response_language,
             )
 
         if self.config.enable_equation_processing:
@@ -206,6 +211,7 @@ class RAGAnything(QueryMixin, ProcessorMixin, BatchMixin):
                 lightrag=self.lightrag,
                 modal_caption_func=self.llm_model_func,
                 context_extractor=self.context_extractor,
+                response_language=vlm_response_language,
             )
 
         # Always include generic processor as fallback
@@ -213,6 +219,7 @@ class RAGAnything(QueryMixin, ProcessorMixin, BatchMixin):
             lightrag=self.lightrag,
             modal_caption_func=self.llm_model_func,
             context_extractor=self.context_extractor,
+            response_language=vlm_response_language,
         )
 
         self.logger.info("Multimodal processors initialized with context support")

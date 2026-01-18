@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://localhost:8080"]
 
     # LightRAG API 서버 설정 (Proxy 대상)
-    LIGHTRAG_API_HOST: str = "http://10.62.146.92:9621"
+    LIGHTRAG_API_HOST: str = "http://10.62.130.84:9621"
     LIGHTRAG_API_KEY: Optional[str] = None
     LIGHTRAG_API_USERNAME: str = "admin"
     LIGHTRAG_API_PASSWORD: str = "admin123"
@@ -62,6 +62,13 @@ class Settings(BaseSettings):
     ENABLE_IMAGE_PROCESSING: bool = True
     ENABLE_TABLE_PROCESSING: bool = True
     ENABLE_EQUATION_PROCESSING: bool = True
+
+    # MinerU Performance Settings
+    # vlm-http-client: Fastest (~11x faster than hybrid-auto-engine), requires VLM server
+    # hybrid-auto-engine: Good accuracy, moderate speed (default)
+    # pipeline: CPU compatible, basic accuracy
+    MINERU_BACKEND: str = "vlm-http-client"
+    MINERU_VLM_URL: str = "http://localhost:18008/v1"
 
     # LLM 설정
     LLM_BINDING: str = "openai"

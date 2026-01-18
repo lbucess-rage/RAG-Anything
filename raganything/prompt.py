@@ -11,27 +11,34 @@ from typing import Any
 
 PROMPTS: dict[str, Any] = {}
 
-# System prompts for different analysis types
+# System prompts for different analysis types (with language support)
 PROMPTS["IMAGE_ANALYSIS_SYSTEM"] = (
-    "You are an expert image analyst. Provide detailed, accurate descriptions."
+    "You are an expert image analyst. Provide detailed, accurate descriptions. "
+    "IMPORTANT: You MUST respond in {response_language}."
 )
 PROMPTS["IMAGE_ANALYSIS_FALLBACK_SYSTEM"] = (
-    "You are an expert image analyst. Provide detailed analysis based on available information."
+    "You are an expert image analyst. Provide detailed analysis based on available information. "
+    "IMPORTANT: You MUST respond in {response_language}."
 )
 PROMPTS["TABLE_ANALYSIS_SYSTEM"] = (
-    "You are an expert data analyst. Provide detailed table analysis with specific insights."
+    "You are an expert data analyst. Provide detailed table analysis with specific insights. "
+    "IMPORTANT: You MUST respond in {response_language}."
 )
 PROMPTS["EQUATION_ANALYSIS_SYSTEM"] = (
-    "You are an expert mathematician. Provide detailed mathematical analysis."
+    "You are an expert mathematician. Provide detailed mathematical analysis. "
+    "IMPORTANT: You MUST respond in {response_language}."
 )
 PROMPTS["GENERIC_ANALYSIS_SYSTEM"] = (
-    "You are an expert content analyst specializing in {content_type} content."
+    "You are an expert content analyst specializing in {content_type} content. "
+    "IMPORTANT: You MUST respond in {response_language}."
 )
 
 # Image analysis prompt template
 PROMPTS[
     "vision_prompt"
-] = """Please analyze this image in detail and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this image in detail and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive and detailed visual description of the image following these guidelines:
@@ -59,7 +66,9 @@ Focus on providing accurate, detailed visual analysis that would be useful for k
 # Image analysis prompt with context support
 PROMPTS[
     "vision_prompt_with_context"
-] = """Please analyze this image in detail, considering the surrounding context. Provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this image in detail, considering the surrounding context. Provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive and detailed visual description of the image following these guidelines:
@@ -100,7 +109,9 @@ Footnotes: {footnotes}
 # Table analysis prompt template
 PROMPTS[
     "table_prompt"
-] = """Please analyze this table content and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this table content and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the table including:
@@ -129,7 +140,9 @@ Focus on extracting meaningful insights and relationships from the tabular data.
 # Table analysis prompt with context support
 PROMPTS[
     "table_prompt_with_context"
-] = """Please analyze this table content considering the surrounding context, and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this table content considering the surrounding context, and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the table including:
@@ -162,7 +175,9 @@ Focus on extracting meaningful insights and relationships from the tabular data 
 # Equation analysis prompt template
 PROMPTS[
     "equation_prompt"
-] = """Please analyze this mathematical equation and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this mathematical equation and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the equation including:
@@ -190,7 +205,9 @@ Focus on providing mathematical insights and explaining the equation's significa
 # Equation analysis prompt with context support
 PROMPTS[
     "equation_prompt_with_context"
-] = """Please analyze this mathematical equation considering the surrounding context, and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this mathematical equation considering the surrounding context, and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the equation including:
@@ -222,7 +239,9 @@ Focus on providing mathematical insights and explaining the equation's significa
 # Generic content analysis prompt template
 PROMPTS[
     "generic_prompt"
-] = """Please analyze this {content_type} content and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this {content_type} content and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the content including:
@@ -246,7 +265,9 @@ Focus on extracting meaningful information that would be useful for knowledge re
 # Generic content analysis prompt with context support
 PROMPTS[
     "generic_prompt_with_context"
-] = """Please analyze this {content_type} content considering the surrounding context, and provide a JSON response with the following structure:
+] = """**IMPORTANT: Respond entirely in {response_language}.**
+
+Please analyze this {content_type} content considering the surrounding context, and provide a JSON response with the following structure:
 
 {{
     "detailed_description": "A comprehensive analysis of the content including:

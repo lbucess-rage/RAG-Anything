@@ -133,6 +133,9 @@ class RAGAnythingService:
                     enable_image_processing=self.settings.ENABLE_IMAGE_PROCESSING,
                     enable_table_processing=self.settings.ENABLE_TABLE_PROCESSING,
                     enable_equation_processing=self.settings.ENABLE_EQUATION_PROCESSING,
+                    # MinerU Performance Settings
+                    mineru_backend=self.settings.MINERU_BACKEND,
+                    mineru_vlm_url=self.settings.MINERU_VLM_URL,
                 )
 
                 # RAG-Anything 인스턴스 생성 (동일 스토리지 사용)
@@ -155,6 +158,8 @@ class RAGAnythingService:
                 self._initialized = True
                 logger.info("RAG-Anything multimodal service initialized")
                 logger.info(f"  Parser: {self.settings.PARSER}")
+                logger.info(f"  MinerU backend: {self.settings.MINERU_BACKEND}")
+                logger.info(f"  MinerU VLM URL: {self.settings.MINERU_VLM_URL}")
                 logger.info(f"  Image processing: {self.settings.ENABLE_IMAGE_PROCESSING}")
                 logger.info(f"  Table processing: {self.settings.ENABLE_TABLE_PROCESSING}")
                 logger.info(f"  Equation processing: {self.settings.ENABLE_EQUATION_PROCESSING}")
