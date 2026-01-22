@@ -57,7 +57,7 @@ class Settings(BaseSettings):
 
     # RAG-Anything 설정 (문서 처리용)
     WORKING_DIR: str = Field(default="./rag_storage")
-    PARSER: str = "mineru"
+    PARSER: str = "docling"
     PARSE_METHOD: str = "auto"
     ENABLE_IMAGE_PROCESSING: bool = True
     ENABLE_TABLE_PROCESSING: bool = True
@@ -68,7 +68,7 @@ class Settings(BaseSettings):
     # hybrid-auto-engine: Good accuracy, moderate speed (default)
     # pipeline: CPU compatible, basic accuracy
     MINERU_BACKEND: str = "vlm-http-client"
-    MINERU_VLM_URL: str = "http://localhost:18008/v1"
+    MINERU_VLM_URL: str = "http://10.62.130.84:18006/v1"
 
     # LLM 설정
     LLM_BINDING: str = "openai"
@@ -85,6 +85,7 @@ class Settings(BaseSettings):
     VLM_MODEL: str = "qwen3-vl-8b"
     VLM_BINDING_HOST: str = "http://10.62.130.84:18006/v1"
     VLM_BINDING_API_KEY: str = "EMPTY"
+    VLM_RESPONSE_LANGUAGE: str = "Korean"
 
     # Embedding 설정
     EMBEDDING_BINDING: str = "openai"

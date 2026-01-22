@@ -136,6 +136,8 @@ class RAGAnythingService:
                     # MinerU Performance Settings
                     mineru_backend=self.settings.MINERU_BACKEND,
                     mineru_vlm_url=self.settings.MINERU_VLM_URL,
+                    # VLM Response Language
+                    vlm_response_language=self.settings.VLM_RESPONSE_LANGUAGE,
                 )
 
                 # RAG-Anything 인스턴스 생성 (동일 스토리지 사용)

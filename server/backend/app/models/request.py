@@ -27,7 +27,7 @@ class QueryRequest(BaseModel):
         default=60,
         ge=1,
         le=200,
-        description="검색 결과 개수"
+        description="검색 결과 개수 (엔티티/관계)"
     )
     only_need_context: bool = Field(
         default=False,
@@ -36,6 +36,61 @@ class QueryRequest(BaseModel):
     only_need_prompt: bool = Field(
         default=False,
         description="프롬프트만 반환"
+    )
+    # 프롬프팅 관련 파라미터
+    user_prompt: Optional[str] = Field(
+        default=None,
+        max_length=5000,
+        description="사용자 정의 프롬프트 (기본 템플릿 대신 사용)"
+    )
+    response_type: Optional[str] = Field(
+        default=None,
+        description="응답 형식: 'Multiple Paragraphs', 'Single Paragraph', 'Bullet Points'"
+    )
+    hl_keywords: Optional[List[str]] = Field(
+        default=None,
+        description="고수준 키워드 (검색 우선순위)"
+    )
+    ll_keywords: Optional[List[str]] = Field(
+        default=None,
+        description="저수준 키워드 (검색 세분화)"
+    )
+    # 검색/토큰 제어 파라미터
+    chunk_top_k: Optional[int] = Field(
+        default=None,
+        ge=1,
+        le=500,
+        description="벡터 검색에서 가져올 텍스트 청크 수"
+    )
+    max_token_for_text_unit: Optional[int] = Field(
+        default=None,
+        ge=100,
+        le=10000,
+        description="텍스트 유닛 최대 토큰"
+    )
+    max_token_for_global_context: Optional[int] = Field(
+        default=None,
+        ge=100,
+        le=10000,
+        description="글로벌 컨텍스트 최대 토큰"
+    )
+    max_token_for_local_context: Optional[int] = Field(
+        default=None,
+        ge=100,
+        le=10000,
+        description="로컬 컨텍스트 최대 토큰"
+    )
+    enable_rerank: Optional[bool] = Field(
+        default=None,
+        description="리랭킹 활성화 여부"
+    )
+    include_references: bool = Field(
+        default=True,
+        description="참조 목록 포함 여부"
+    )
+    include_chunk_content: bool = Field(
+        default=False,
+        description="청크 내용 포함 여부"
     )
 
     @field_validator("query")

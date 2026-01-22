@@ -83,14 +83,37 @@ async def search(
                     request_id=request_id,
                 )
 
-        # LightRAG API 프록시 호출
-        result = await lightrag.query(
-            query=request.query,
-            mode=request.mode.value,
-            top_k=request.top_k,
-            only_need_context=request.only_need_context,
-            only_need_prompt=request.only_need_prompt,
-        )
+        # LightRAG API 프록시 호출 - 추가 파라미터 포함
+        query_params = {
+            "query": request.query,
+            "mode": request.mode.value,
+            "top_k": request.top_k,
+            "only_need_context": request.only_need_context,
+            "only_need_prompt": request.only_need_prompt,
+            "include_references": request.include_references,
+            "include_chunk_content": request.include_chunk_content,
+        }
+        # 선택적 파라미터 추가
+        if request.user_prompt:
+            query_params["user_prompt"] = request.user_prompt
+        if request.response_type:
+            query_params["response_type"] = request.response_type
+        if request.hl_keywords:
+            query_params["hl_keywords"] = request.hl_keywords
+        if request.ll_keywords:
+            query_params["ll_keywords"] = request.ll_keywords
+        if request.chunk_top_k is not None:
+            query_params["chunk_top_k"] = request.chunk_top_k
+        if request.max_token_for_text_unit is not None:
+            query_params["max_token_for_text_unit"] = request.max_token_for_text_unit
+        if request.max_token_for_global_context is not None:
+            query_params["max_token_for_global_context"] = request.max_token_for_global_context
+        if request.max_token_for_local_context is not None:
+            query_params["max_token_for_local_context"] = request.max_token_for_local_context
+        if request.enable_rerank is not None:
+            query_params["enable_rerank"] = request.enable_rerank
+
+        result = await lightrag.query(**query_params)
 
         latency_ms = (time.time() - start_time) * 1000
 
@@ -152,11 +175,28 @@ async def search_stream(
 
     async def generate() -> AsyncGenerator[str, None]:
         try:
-            async for ndjson_line in lightrag.query_stream(
-                query=request.query,
-                mode=request.mode.value,
-                top_k=request.top_k,
-            ):
+            # 스트리밍 쿼리 파라미터
+            stream_params = {
+                "query": request.query,
+                "mode": request.mode.value,
+                "top_k": request.top_k,
+                "include_references": request.include_references,
+            }
+            # 선택적 파라미터 추가
+            if request.user_prompt:
+                stream_params["user_prompt"] = request.user_prompt
+            if request.response_type:
+                stream_params["response_type"] = request.response_type
+            if request.hl_keywords:
+                stream_params["hl_keywords"] = request.hl_keywords
+            if request.ll_keywords:
+                stream_params["ll_keywords"] = request.ll_keywords
+            if request.chunk_top_k is not None:
+                stream_params["chunk_top_k"] = request.chunk_top_k
+            if request.enable_rerank is not None:
+                stream_params["enable_rerank"] = request.enable_rerank
+
+            async for ndjson_line in lightrag.query_stream(**stream_params):
                 # NDJSON 라인을 파싱하여 SSE 형식으로 변환
                 try:
                     chunk_data = json.loads(ndjson_line)
