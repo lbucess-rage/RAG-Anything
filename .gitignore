@@ -81,3 +81,8 @@ server/backend/document_storage/
 
 # MinerU VLM Models
 models/
+
+# Server PID files
+*.pid
+.raganything-*.pid
+server/*/logs/
