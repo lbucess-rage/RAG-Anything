@@ -75,7 +75,7 @@ test_*
 memory-bank/
 
 # AI
-.claude/
+.claude/settings.local.json
 .cursor/
 server/backend/document_storage/
 
